@@ -15,9 +15,7 @@ jobs:
         uses: actions/checkout@v4
       - name: pre-requisites Installation
         shell: powershell
-        run: |
-            sudo apt install fortune-mod cowsay -y
-            echo "installation done"
+        run: sudo apt install fortune-mod cowsay -y
       - name: run the script
         run: |
              ./wisecow.sh

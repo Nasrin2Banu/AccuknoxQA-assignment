@@ -16,7 +16,8 @@ jobs:
       - name: pre-requisites Installation
         run: sudo apt install fortune-mod cowsay -y
       - name: run the script
-        run: ./wisecow.sh
+        run: |
+          ./wisecow.sh
       - name: upload artifact
         uses: actions/upload-artifact@v4
         with:

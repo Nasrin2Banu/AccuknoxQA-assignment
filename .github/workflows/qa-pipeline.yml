@@ -20,6 +20,7 @@ jobs:
         run: |
           docker build -t abbasdocpractice/docker-practice2:latest .
           docker push abbasdocpractice/docker-practice2:latest
+          docker run -p 8080:4499 abbasdocpractice/docker-practice2:latest
           
   deploy:
     name: Deploy to Kubernetes

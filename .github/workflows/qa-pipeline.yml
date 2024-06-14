@@ -1,30 +1,41 @@
+name: Build and Deploy
+
 on:
   push:
     branches:
       - main
-    paths-ignore:
-      - '.github/workflow/**'
 
 jobs:
   build:
-    name: Build the app
+    name: Build Docker image
     runs-on: ubuntu-latest
+
     steps:
-      - name: Check out the repository to the runner
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Pre-requisites Installation
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build Docker image
         run: |
-          sudo apt update
-          sudo apt install fortune-mod cowsay -y
+          docker build -t abbasdocpractice/wisecow:latest .
+          docker push abbasdocpractice/wisecow:latest
 
-      - name: Run the script
-        run: |
-          chmod +x wisecow.sh  # Ensure execute permission
-          ./wisecow.sh
+  deploy:
+    name: Deploy to Kubernetes
+    needs: build
+    runs-on: ubuntu-latest
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Configure kubectl
+        uses: azure/k8s-set-context@v1
         with:
-          name: wisecow-artifact
-          path: path/to/artifacts
+          kubeconfig: ${{ secrets.KUBE_CONFIG_DATA }}
+
+      - name: Apply Kubernetes manifests
+        run: |
+          kubectl apply -f path/to/k8s/manifests

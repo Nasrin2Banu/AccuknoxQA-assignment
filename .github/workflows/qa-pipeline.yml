@@ -14,7 +14,6 @@ jobs:
       - name: Check out the repository to the runner
         uses: actions/checkout@v4
       - name: pre-requisites Installation
-        shell: powershell
         run: sudo apt install fortune-mod cowsay -y
       - name: run the script
         run: |

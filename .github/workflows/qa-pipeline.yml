@@ -5,7 +5,6 @@ on:
     paths-ignore:
       - '.github/workflow/**'
 
-
 jobs:
   build:
     name: Build the app
@@ -13,16 +12,19 @@ jobs:
     steps:
       - name: Check out the repository to the runner
         uses: actions/checkout@v4
-      - name: pre-requisites Installation
-        run: sudo apt install fortune-mod cowsay -y
-      - name: run the script
+
+      - name: Pre-requisites Installation
         run: |
+          sudo apt update
+          sudo apt install fortune-mod cowsay -y
+
+      - name: Run the script
+        run: |
+          chmod +x wisecow.sh  # Ensure execute permission
           ./wisecow.sh
-      - name: upload artifact
+
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: wisecow-artifact
-        
-      
-        
-        
+          path: path/to/artifacts

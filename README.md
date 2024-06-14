@@ -1,3 +1,4 @@
+
 # Cow wisdom web server
 
 ## Prerequisites

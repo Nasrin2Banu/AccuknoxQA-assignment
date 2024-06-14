@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: CI
 
 on:
   push:
@@ -15,17 +15,12 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Docker Login
-        run: |
-          echo "abbasdocpractice" | docker login -u "abbasdocpractice" --password-stdin
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
+        run: echo "abbasdocpractice" | docker login -u "abbasdocpractice" --password-stdin
       - name: Build Docker image
         run: |
           docker build -t abbasdocpractice/docker-practice2:latest .
           docker push abbasdocpractice/docker-practice2:latest
-
+          
   deploy:
     name: Deploy to Kubernetes
     needs: build

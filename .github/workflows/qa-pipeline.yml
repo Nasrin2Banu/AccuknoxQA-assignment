@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Build Docker image
+    name: Build, Push, and Run Docker image
     runs-on: ubuntu-latest
 
     steps:
@@ -16,11 +16,17 @@ jobs:
 
       - name: Docker Login
         run: echo "abbasdocpractice" | docker login -u "abbasdocpractice" --password-stdin
-        
+
       - name: Build Docker image
         run: |
           docker build -t abbasdocpractice/docker-practice2:latest .
           docker push abbasdocpractice/docker-practice2:latest
+
+      - name: Run Docker container
+        run: |
+          docker run -d -p 4499:4499 abbasdocpractice/docker-practice2:latest
+
+
           
   deploy:
     name: Deploy to Kubernetes

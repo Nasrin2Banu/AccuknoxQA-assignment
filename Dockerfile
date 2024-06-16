@@ -6,7 +6,7 @@ RUN apt-get update && \
     apt-get install fortune-mod cowsay -y
 
 # Copy the wisecow.sh script into the container
-COPY AccuknoxQA-assignment/wisecow.sh /wisecow.sh
+COPY wisecow.sh /wisecow.sh
 
 # Set execute permission on the script
 RUN chmod +x /wisecow.sh

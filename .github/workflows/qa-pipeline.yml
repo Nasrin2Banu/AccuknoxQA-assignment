@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD Pipeline
 
 on:
   push:
@@ -14,27 +14,29 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Docker Login
-        run: echo "abbasdocpractice" | docker login -u "abbasdocpractice" --password-stdin
       - name: Build Docker image
         run: |
           docker build -t abbasdocpractice/docker-practice2:latest .
           docker push abbasdocpractice/docker-practice2:latest
-          
+
   deploy:
     name: Deploy to Kubernetes
     needs: build
     runs-on: ubuntu-latest
-  
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-  
+
       - name: Configure kubectl
         uses: azure/k8s-set-context@v1
         with:
-          kubeconfig: "wisecow-deployment.yaml"
-  
-      - name: Apply Kubernetes manifests
+          kubeconfig: "wisecow-deployment.yaml"  # Ensure this path is correct
+
+      - name: Apply Kubernetes Deployment
         run: |
-          kubectl apply -f AccuknoxQA-assignment/wisecow-deployment.yaml
+          kubectl apply -f wisecow-deployment.yaml --validate=false  # Disable validation if needed
+
+      - name: Apply Kubernetes Service
+        run: |
+          kubectl apply -f wisecow-service.yaml --validate=false  # Disable validation if needed

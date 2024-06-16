@@ -3,7 +3,7 @@ FROM ubuntu:latest
 
 # Update package lists and install necessary packages
 RUN apt-get update && \
-    apt-get install -y fortune-mod cowsay
+    apt-get install fortune-mod cowsay -y
 
 # Copy the wisecow.sh script into the container
 COPY wisecow.sh /wisecow.sh

@@ -3,7 +3,7 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - mai
+      - main
 
 jobs:
   build:
@@ -38,8 +38,8 @@ jobs:
 
       - name: Apply Kubernetes Deployment
         run: |
-          kubectl apply -f AccuknoxQA-assignment/wisecow-deployment.yaml --validate=false
+          kubectl apply -f AccuknoxQA-assignment/wisecow-deployment.yaml
 
       - name: Apply Kubernetes Service
         run: |
-          kubectl apply -f AccuknoxQA-assignment/wisecow-service.yaml --validate=false  
+          kubectl apply -f AccuknoxQA-assignment/wisecow-service.yaml  

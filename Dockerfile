@@ -1,13 +1,17 @@
 # Use a base image with Ubuntu
 FROM ubuntu:latest
 
-# Update package lists and install necessary packages
-RUN apt-get update && \
-    apt-get install -y fortune-mod cowsay netcat
-    
-# Clean up unnecessary files
-RUN apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# Update package lists
+RUN apt-get update
+
+# Install fortune-mod
+RUN apt-get install -y fortune-mod
+
+# Install cowsay
+RUN apt-get install -y cowsay
+
+# Install netcat
+RUN apt-get install -y netcat
 
 # Copy the wisecow.sh script into the container
 COPY wisecow.sh /wisecow.sh

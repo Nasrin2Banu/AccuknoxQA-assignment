@@ -11,7 +11,7 @@ RUN apt-get install -y fortune-mod
 RUN apt-get install -y cowsay
 
 # Install netcat
-RUN apt-get install -y netcat
+RUN apt-get install -y netcat-openbsd
 
 # Copy the wisecow.sh script into the container
 COPY wisecow.sh /wisecow.sh

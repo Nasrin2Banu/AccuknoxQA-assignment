@@ -34,12 +34,12 @@ jobs:
       - name: Configure kubectl
         uses: azure/k8s-set-context@v1
         with:
-          kubeconfig: "AccuknoxQA-assignment/wisecow-deployment.yaml"  # Ensure this path is correct
+          kubeconfig: "AccuknoxQA-assignment/wisecow-deployment.yaml"  # Adjust path relative to repository root
 
       - name: Apply Kubernetes Deployment
         run: |
-          kubectl apply -f wisecow-deployment.yaml --validate=true  # Disable validation if needed
+          kubectl apply -f AccuknoxQA-assignment/wisecow-deployment.yaml --validate=false  # Adjust path and validation as needed
 
       - name: Apply Kubernetes Service
         run: |
-          kubectl apply -f wisecow-service.yaml --validate=true  # Disable validation if needed
+          kubectl apply -f AccuknoxQA-assignment/wisecow-service.yaml --validate=false  

@@ -3,8 +3,8 @@ FROM ubuntu:latest
 
 # Update package lists and install necessary packages
 RUN apt-get update && \
-    apt-get install -y fortune-mod cowsay
-
+    apt-get install -y fortune-mod cowsay netcat
+    
 # Clean up unnecessary files
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/*

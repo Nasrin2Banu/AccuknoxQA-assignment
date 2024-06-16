@@ -37,4 +37,4 @@ jobs:
   
       - name: Apply Kubernetes manifests
         run: |
-          kubectl apply -f path/to/k8s/manifests
+          kubectl apply -f AccuknoxQA-assignment/wisecow-deployment.yaml

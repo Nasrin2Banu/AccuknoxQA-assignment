@@ -3,7 +3,7 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main
+      - mai
 
 jobs:
   build:
@@ -34,11 +34,11 @@ jobs:
       - name: Configure kubectl
         uses: azure/k8s-set-context@v1
         with:
-          kubeconfig: "AccuknoxQA-assignment/wisecow-deployment.yaml"  # Adjust path relative to repository root
+          kubeconfig: "AccuknoxQA-assignment/wisecow-deployment.yaml"
 
       - name: Apply Kubernetes Deployment
         run: |
-          kubectl apply -f AccuknoxQA-assignment/wisecow-deployment.yaml --validate=false  # Adjust path and validation as needed
+          kubectl apply -f AccuknoxQA-assignment/wisecow-deployment.yaml --validate=false
 
       - name: Apply Kubernetes Service
         run: |
